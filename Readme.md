@@ -11,7 +11,12 @@ cd ~/.dotfiles
 ./install
 ```
 
-Note that it might be handy to put these files in something like 
+Note that `stow` will steadfastly refuse to overwright files which it 
+does not "own". You will, therefore, want to remove (and back up!) your 
+current relevant dotfiles in `~/`. You can, of course, edit the files in 
+`~/.dotfiles` to match your own specifications.
+
+Also, it might be handy to put these files in something like 
 `Projects/dotfiles` and sym-link to `~/.dotfiles`. 
 
 ## Modify
