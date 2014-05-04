@@ -16,3 +16,7 @@
 
 # byte-compiled emacs-lisp
 **/*.elc
+
+# possibly private
+emacs/.emacs.d/*
+!emacs/.emacs.d/plugins
