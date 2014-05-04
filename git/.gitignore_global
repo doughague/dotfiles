@@ -52,7 +52,6 @@ Thumbs.db
 #############
 .*
 !.gitignore
-!**/.gitignore
 *~
 
 # OSX #
