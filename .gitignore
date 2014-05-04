@@ -12,7 +12,8 @@
 !**/.gitignore
 
 # private file(s)
-**/*private
+bash/.bash.d/private
+**private
 
 # byte-compiled emacs-lisp
 **/*.elc
