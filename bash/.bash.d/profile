@@ -1,0 +1,50 @@
+################################################################
+# \file      profile
+# \brief     GNU Bourne Again SHell profile
+# \author    Doug Hague
+# \date      01.05.2014
+# \copyright GPLv3
+################################################################
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# umask; the default umask is set in /etc/profile in Debian
+umask 077
+
+# # Add `~/bin` to the `$PATH`
+# export PATH="$HOME/bin:$PATH"
+
+# Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+for file in ~/.bash.d/{colors,prompt,exports,aliases,functions,private}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
+
+# update the values of LINES and COLUMNS after each command
+shopt -s checkwinsize
+
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob
+
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+# # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+# [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh
+
+# If possible, add tab completion for many more commands
+[ -f /etc/bash_completion ] && source /etc/bash_completion
+
+# Welcome message
+MachDesc=`lsb_release -a |grep Description: |cut -c 14-50`
+cat ~/.bash.d/welcome.txt
+echo "Hello $FullName ($LoginName). Welcome to `hostname`!"
+echo "Running $MachDesc `uname -m`."

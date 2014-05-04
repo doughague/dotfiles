@@ -1,0 +1,51 @@
+################################################################
+# \file      private
+# \brief     Private definitions
+# \author    Doug Hague
+# \date      04.05.2014
+# \copyright GPLv3
+################################################################
+
+#-------------------------------
+# gmail
+NAMES[0]="Doug Hague"
+LOGONS[0]="doughague"
+DOMAINS[0]="gmail.com"
+KEYIDS[0]="82B59ACC"
+FPS[0]="5502 E48C A3D0 6258 DAEB  6D86 25DE A179 82B5 9ACC"
+# riseup
+NAMES[1]="Da Doug"
+LOGONS[1]="dadoug"
+DOMAINS[1]="riseup.net"
+KEYIDS[1]="9B3C4AAD"
+FPS[1]="9D67 A5DC 4365 5A91 D0E5  157C 90E5 0EA5 9B3C 4AAD"
+
+
+#-------------------------------
+# Current identity index
+idx=0
+
+#-------------------------------
+# set `em
+export MY_NAME="${NAMES[$idx]}"
+export MY_LOGON="${LOGONS[$idx]}"
+export MY_EMAIL="${LOGONS[$idx]}@${DOMAINS[$idx]}"
+export MY_KEYID="${KEYIDS[$idx]}"
+export MY_FP="${FPS[$idx]}"
+# Git name
+export GIT_AUTHOR_NAME="$MY_NAME"
+export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+git config --global user.name "$GIT_AUTHOR_NAME"
+# Git email
+export GIT_AUTHOR_EMAIL="$MY_EMAIL"
+export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+git config --global user.email "$GIT_AUTHOR_EMAIL"
+
+#-------------------------------
+# Print identity
+function print_id() {
+    echo "Name:  ${NAMES[$1]}"
+    echo "Email: ${LOGONS[$1]}@${DOMAINS[$1]}"
+    echo "KeyID: ${KEYIDS[$1]}"
+    echo "FP:    ${FPS[$1]}"
+}

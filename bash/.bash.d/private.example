@@ -1,0 +1,15 @@
+################################################################
+# \file      private.example
+# \brief     Example private definitions
+# \author    Doug Hague
+# \date      04.05.2014
+# \copyright GPLv3
+################################################################
+
+# Git credentials
+export GIT_AUTHOR_NAME="My Name"
+export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+git config --global user.name "$GIT_AUTHOR_NAME"
+export GIT_AUTHOR_EMAIL="myemails@mailinator.com"
+export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+git config --global user.email "$GIT_AUTHOR_EMAIL"

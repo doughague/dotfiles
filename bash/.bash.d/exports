@@ -1,0 +1,70 @@
+################################################################
+# \file      exports
+# \brief     GNU Bourne Again SHell exports
+# \author    Doug Hague
+# \date      01.05.2014
+# \copyright GPLv3
+################################################################
+
+# add /usr/local libraries
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=/usr/local/lib:$DYLD_LIBRARY_PATH
+
+# History control
+export HISTCONTROL=ignoredups   # don't put duplicate lines in the history
+export HISTCONTROL=ignorespace  # don't put space lines in the history
+export HISTCONTROL=ignoreboth   # ignore same sucessive entries.
+# Make some commands not show up in history
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+# History size = 32^3
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+# append to the history file, no overwrite
+shopt -s histappend
+
+# Make emacs the default editor
+export EDITOR="emacs"
+
+# C compiler
+export GCC=`which gcc`
+if [ -f $GCC ]; then
+    export CC=$GCC
+    export CC_VERSION=`$CC --version| head -n1`
+else
+    echo "Failed to setup gcc!"
+fi
+
+# C++ compiler
+export GPP=`which g++`
+if [ -f $GPP ]; then
+    export CXX=$GPP
+    export CXX_VERSION=`$CXX --version| head -n1`
+#    export LINK=$GPP
+#    export LD=$GPP
+else
+    echo "Failed to setup g++!"
+fi
+
+# Local path helpers
+export Apps=$HOME/Applications      # local applications
+export Code=$Apps/Code              # my code
+export Scripts=$Code/Scripts        # my scripts
+export ThirdParty=$Apps/ThirdParty  # third-party software
+
+# CERN root-system
+ThisCernRoot=$ThirdParty/root/bin/thisroot.sh
+if [ -f $ThisCernRoot ]; then 
+    source $ThisCernRoot  # load root paths etc
+    alias root='root -l'  # no-splash alias
+else
+    echo "Failed to setup CERN root-system!"
+fi
+
+# GNUnet
+#export GNUNET_PREFIX=$ThirdParty/gnunet-0.10.0/
+export GNUNET_PREFIX=/usr/local/
+
+# login (short) name; "logname"
+export LoginName=`id -un`
+# full (long) name
+export FullName=`finger $LoginName |head -n1 |cut -d : -f3| cut -c 2-50`

@@ -1,0 +1,23 @@
+################################################################
+# \file      prompt
+# \brief     GNU Bourne Again SHell prompt
+# \author    Doug Hague
+# \date      04.11.2013
+# \copyright GPLv3
+################################################################
+
+# Color Prompt
+PS1Symbol=`echo -e "\xE2\x88\x83"` # Existential quantification
+RedCA="\[${CLR_ESC}${CLR_BOLD};${CLR_RED}m\]${PS1Symbol}\[${CLR_ESC}${CLR_RESET}m\]"
+WrkDir="\[${CLR_ESC}${CLR_BOLD};${CLR_BLUE}m\]\w\[${CLR_ESC}${CLR_RESET}m\]"
+WrkTime="\[${CLR_ESC}${CLR_BOLD};${CLR_BLACK}m\][\t]\[${CLR_ESC}${CLR_RESET}m\]"
+PS1="${WrkTime} ${WrkDir} ${RedCA} "
+
+# xterm title - user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac

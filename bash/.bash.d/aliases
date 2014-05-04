@@ -1,0 +1,103 @@
+################################################################
+# \file      aliases
+# \brief     GNU Bourne Again SHell aliases
+# \author    Doug Hague
+# \date      04.11.2013
+# \copyright GPLv3
+################################################################
+
+# cd -- change directory
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+# ls -- list directory contents
+alias ls='ls --color=auto --group-directories-first'  # colored
+alias la='ls -A'            # show hidden files
+alias lm='ls -Alh |less'    # pipe through 'less'
+alias ll='ls -lh'           # long list
+alias lk='ll -Sr'           # sort by size, biggest last
+alias lc='ll -tcr'          # sort by and show change time, most recent last
+alias lu='ll -tur'          # sort by and show access time, most recent last
+alias lt='ll -tr'           # sort by date, most recent last
+# List only directories
+alias lsd="ls -lF | grep --color=never '^d'"
+
+# tree -- directory tree structure 
+alias tree='tree -Chsu'     # nice alternative to 'recursive ls'
+                            # -C Turn colorization on always.
+                            # -s Print the size in bytes of each file.
+                            # -h Print the size in a more human readable way.
+                            # -u Displays file owner or UID number.
+alias ltree='tree | less'   # pipe through less 
+
+# mkdir -- make directory
+alias mkdir='mkdir -p'  # -p Create intermediate directories as required. 
+
+# jobs -- show running jobs
+alias jobs='jobs -l'  # -l Reports the process group ID and working directory
+
+# whichall -- show all matching executables
+alias whichall='type -a' # -a all of the places that contain an executable named name
+
+# du -- display disk usage statistics
+alias du='du -hc'  # Makes a more readable output.
+                   # -h "Human-readable" output
+                   # -c Display a grand total
+
+# df -- display free disk space
+alias df='df -H'  # Makes a more readable output.
+
+# less -- pager 
+alias less='less -R'  # display colors in less
+
+# grep -- file pattern searcher 
+alias grep='grep --color'
+alias ngrep='grep -n'
+
+# ghist -- search history 
+alias ghist='history | grep'
+
+# quick access global paths
+alias path='echo -e ${PATH//:/\\n}'
+alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
+
+# "alert" alias for long running commands
+# Use like so: sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# clean -- delete cruft from this directory 
+alias clean='echo -n "Really clean this directory? (y/N)";
+             read yorn;
+	     if test "$yorn" = "y"; then
+	        rm -f \#* *~ .*~ *.tmp .*.tmp core a.out;
+	        echo "Cleaned.";
+	     else
+	        echo "Not cleaned.";
+	     fi'
+
+# shred -- secure-delete ALL from this directory 
+alias shred-tree='find . -type f -execdir shred -v -z -f -u '{}' \;'
+alias shred-all='echo -n "Really shred this directory?! (y/N)";
+	read yorn;
+	if test "$yorn" = "y"; then
+           find . -type f -execdir shred -v -z -f -u '{}' \;
+	   echo "Shredded.";
+	else
+	   echo "Not shredded.";
+	fi'
+
+# IP addresses
+#alias getip="wget http://checkip.dyndns.org/ -O - -o /dev/null | cut -d: -f 2 | cut -d\< -f 1"
+alias getip="curl -s http://ip1.dynupdate.no-ip.com/; echo"
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en0"
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# Enhanced WHOIS lookups
+alias whois="whois -h whois-servers.net"
+
+# Software Updates
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get upgrade'

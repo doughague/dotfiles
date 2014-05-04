@@ -1,0 +1,38 @@
+#!/bin/bash
+################################################################
+# \file      install
+# \brief     Install the dotfiles (using GNU stow)
+# \author    Doug Hague
+# \date      01.05.2014
+# \copyright GPLv3
+################################################################
+
+# GNU stow is crucial for this software
+GNU_STOW=`which stow`
+# attempt install if not found
+if [[ ! -f $GNU_STOW ]] ; then
+    # apt-get
+    echo -e "dotfiles: Installing GNU stow."
+    sudo apt-get install stow
+    # check again
+    GNU_STOW=`which stow`
+    if [[ ! -f $GNU_STOW ]] ; then
+	# failed!
+	echo -e "dotfiles: Failed to find GNU stow."
+	exit 1
+    fi
+fi
+
+# bash
+if [[ -f ~/.profile ]] ; then
+    rm ~/.profile
+fi
+stow bash --target="$HOME"
+source ~/.bashrc
+
+# emacs
+stow emacs --target="$HOME"
+
+# emacs
+stow git --target="$HOME"
+
