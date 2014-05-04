@@ -38,10 +38,11 @@ See `~/.dotfiles/bash/bash.d/private.example` for an example.
 
 ## License
 GNU General Public License, version 3.0. 
-See License.txt for complete license infromation.
+See [License.txt](https://github.com/doughague/dotfiles/blob/master/License.txt) 
+for complete license infromation.
 
 ### Inspiration
-This software was developed using the following packages:
+This software is based on and was developed using the following packages:
 
  * [GNU stow template](https://github.com/Paradiesstaub/gnu_stow_template):
    The MIT License (MIT), Copyright (c) 2014 Thibaut Brandscheid
