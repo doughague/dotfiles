@@ -37,6 +37,7 @@ a `~/.dotfiles/bash/bash.d/private` file.
 See `~/.dotfiles/bash/bash.d/private.example` for an example. 
 
 ## License
+Copyright (C) 2014 Doug Hague
 GNU General Public License, version 3.0. 
 See [License.txt](https://github.com/doughague/dotfiles/blob/master/License.txt) 
 for complete license infromation.
