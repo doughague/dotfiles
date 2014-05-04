@@ -31,7 +31,6 @@ For example, when executing `stow git`, Stow makes symblolic links from the cont
 of the git folder to `~/.gitconfig`.
 This also works for home sub-folders like `~/.config`: `~/.dotfiles/config/.config/`
 
-
 ### Private
 You can set bash stuff that is not published to git by creating 
 a `~/.dotfiles/bash/bash.d/private` file. 
